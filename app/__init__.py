@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from .config import config
 from .dashmachine import DashMachine
 
@@ -9,6 +10,11 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     dm.init_app(app)
+    CORS(app)
+
+    from app.api.core import core
+
+    app.register_blueprint(core)
 
     @app.errorhandler(500)
     def server_error(error):
