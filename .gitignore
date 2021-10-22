@@ -443,3 +443,5 @@ fabric.properties
 .idea
 app/static/cache
 app/static/files
+
+config/
